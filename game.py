@@ -10,10 +10,17 @@ def choice(items):
         nums += num
     return nums
 
-def level_up(hero, health, stamina):
+def level_up(hero):
+    if hero.char_class.name == "Воин":
+        hero.health += 6
+        hero.stamina += 5
+    elif hero.char_class.name == "Разбойник":
+        hero.health += 5
+        hero.stamina += 4
+    else:
+        hero.health += 4
+        hero.stamina += 6
     hero.level += 1
-    hero.health += health
-    hero.stamina += stamina
 
 def hero_stats(hero):
     name = 'Имя: ' + str(hero.name) + '\n'
@@ -22,7 +29,7 @@ def hero_stats(hero):
     level = 'Уровень: ' + str(hero.level) + '\n'
     health = 'Здоровье: ' + str(hero.health) + '\n'
     if hero.char_class.name == 'Маг':
-        stamina = 'Мана' + str(hero.stamina) + '\n'
+        stamina = 'Мана: ' + str(hero.stamina) + '\n'
     else:
         stamina = 'Выносливость: ' + str(hero.stamina) + '\n'
     xp = 'Опыт:' + str(hero.xp) + '\n'
@@ -60,19 +67,9 @@ defense_score = char_class.defense_score
 
 hero = Character(name, race, char_class, strength=strength, dexterity=dexterity, willpower=willpower, magic=magic, cunning=cunning, constitution=constitution, health=health, stamina=stamina, attack_score=attack_score, defense_score=defense_score)
 
-if char_class == "Воин":
-    add_health = 6
-    add_stamina = 5
-elif char_class == "Разбойник":
-    add_health = 5
-    add_stamina = 4
-else:
-    add_health = 4
-    add_stamina = 6
-
 print(hero_stats(hero))
 
-level_up(hero, add_health, add_stamina)
+level_up(hero)
 
 print(hero_stats(hero))
 
